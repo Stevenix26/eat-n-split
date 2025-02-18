@@ -41,8 +41,7 @@ function Main() {
   const [showBillProfile, setShowBillProfile] = useState(null);
 
 
-
-  function handleAddFriend (friend) {
+  function handleAddFriend(friend) {
     setFriends(friends => [...friends, friend]);
     setShows(false);
   }
@@ -52,7 +51,9 @@ function Main() {
   }
 
   function handleSelection(friend) {
-    setShows(friend);
+    // setShowBillProfile(friend);
+    setShowBillProfile((cur) => cur?.id === friend.id ? null : friend);
+    setShows(false);
   }
 
 
@@ -60,7 +61,13 @@ function Main() {
   return (
     <>
       <div className="sidebar">
-        <ListFriend friends={friends} onShowBillProfile={handleSelection} onFriendSelect={setFriends}/>
+        <ListFriend
+          friends={friends}
+          onShowBillProfile={handleSelection}
+          onFriendSelect={setFriends}
+          selectedProfile={showBillProfile}
+        />
+
         {shows && <FriendProfile onAddFriend={handleAddFriend} />}
         {shows ? (
           <button className="button" onClick={handleShowAdd}>
@@ -72,7 +79,7 @@ function Main() {
           </button>
         )}
       </div>
-      {showBillProfile && <BillCalculator />}
+      {showBillProfile && <BillCalculator selectedProfile={showBillProfile} />}{/*Short circuit No to show the bill*/}
     </>
   );
 }

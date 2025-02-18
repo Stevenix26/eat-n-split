@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button } from "./ListFriend";
+import Buttons from "./Buttons";
 
-export function FriendProfile({onAddFriend}) {
+export function FriendProfile({ onAddFriend }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
@@ -39,7 +39,7 @@ export function FriendProfile({onAddFriend}) {
         value={image}
         onChange={(e) => setImage(e.target.value)}
       />
-      <Button className="button">Add</Button>
+      <Buttons className="button">Add</Buttons>
     </form>
   );
 }
