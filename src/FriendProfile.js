@@ -6,11 +6,12 @@ export function FriendProfile({ onAddFriend }) {
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); 
 
     if (!name || !image) return;
 
-    const id = crypto.randomUUID();
+    const id = crypto.randomUUID();//creating a random UUID strings
+
     const newFriend = {
       name,
       image: `${image}?=${id}`,

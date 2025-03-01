@@ -1,8 +1,6 @@
 
 
 export function ListFriend({ friends, onShowBillProfile, selectedProfile }) {
-
-
   return (
     <div>
       <ul>

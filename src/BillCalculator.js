@@ -1,19 +1,24 @@
 import { useState } from "react";
 
-export function BillCalculator({ selectedProfile }) {
+export function BillCalculator({ selectedProfile, onSplitBill }) {
 
   const [bill, setBill] = useState("");
-  const [expense, setExpense] = useState("");
+  const [expenseUser, setExpenseUser] = useState("");
   const [person, setPerson] = useState("user");
 
-  const billing = bill - expense;
+
+  const billingFriend = bill ? bill - expenseUser : "";
 
   function handleSubmit(e) {
     e.preventDefault();
-    const newBill = { bill, expense, billing, person };
-    console.log(newBill);
-    setBill(0);
-    setExpense(0);
+    if (!bill || !expenseUser)   return;// return nothing when u have mothing inputed
+
+
+    onSplitBill(person === 'user' ? billingFriend : - expenseUser);
+    // const newBill = { bill, expenseUser, billingFriend, person };
+    // console.log(newBill);
+    setBill(0);//reset
+    setExpenseUser(0);
   }
 
   return (
@@ -30,13 +35,15 @@ export function BillCalculator({ selectedProfile }) {
       <label>🧔‍♂️Your Expenses</label>
       <input
         type="text"
-        value={expense}
-        onChange={(e) => setExpense(Number(e.target.value))}
+        value={expenseUser}
+        onChange={(e) => setExpenseUser(
+          Number(e.target.value) > bill ? expenseUser :
+            Number(e.target.value)
+        )}
       />
 
-
       <label>🧑‍🤝‍👩🏻{selectedProfile.name}'s Expenses</label>
-      <input type="text" disabled value={Math.abs(billing)} />
+      <input type="text" disabled value={Math.abs(billingFriend)} />
 
       <label>🤑 Who is paying the Bill</label>
       <select

@@ -56,6 +56,13 @@ function Main() {
     setShows(false);
   }
 
+  function handleSplitBill(value) {
+    console.log(value); //this is changing a specific value with an array and setting it to a new one 
+    setFriends((friends) => friends.map((friend) =>
+      friend.id === showBillProfile.id ? { ...friend, balance: friend.balance + value } : friend))
+  setShowBillProfile(null)
+  }
+
 
 
   return (
@@ -79,7 +86,9 @@ function Main() {
           </button>
         )}
       </div>
-      {showBillProfile && <BillCalculator selectedProfile={showBillProfile} />}{/*Short circuit No to show the bill*/}
+      {showBillProfile && <BillCalculator selectedProfile={showBillProfile}
+        onSplitBill={handleSplitBill}
+      />}{/*Short circuit No to show the bill*/}
     </>
   );
 }
