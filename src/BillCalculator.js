@@ -11,7 +11,7 @@ export function BillCalculator({ selectedProfile, onSplitBill }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!bill || !expenseUser)   return;// return nothing when u have mothing inputed
+    if (!bill || !expenseUser) return;// return nothing when u have mothing inputed
 
 
     onSplitBill(person === 'user' ? billingFriend : - expenseUser);
@@ -22,8 +22,8 @@ export function BillCalculator({ selectedProfile, onSplitBill }) {
   }
 
   return (
-    <form className="form-split-bill" onSubmit={handleSubmit}>
-      <h2>Split A Bill withs {selectedProfile.name} </h2>
+    <form className="form-split-bill" onSubmit={handleSubmit} >
+      <h2>Split A Bill with's {selectedProfile.name} </h2>
 
       <label>💰Bill value</label>
       <input

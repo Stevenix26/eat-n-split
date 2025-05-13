@@ -60,7 +60,7 @@ function Main() {
     console.log(value); //this is changing a specific value with an array and setting it to a new one 
     setFriends((friends) => friends.map((friend) =>
       friend.id === showBillProfile.id ? { ...friend, balance: friend.balance + value } : friend))
-  setShowBillProfile(null)
+    setShowBillProfile(null)
   }
 
 
@@ -86,9 +86,12 @@ function Main() {
           </button>
         )}
       </div>
-      {showBillProfile && <BillCalculator selectedProfile={showBillProfile}
-        onSplitBill={handleSplitBill}
-      />}{/*Short circuit No to show the bill*/}
+      {showBillProfile &&
+        <BillCalculator
+          selectedProfile={showBillProfile}
+          onSplitBill={handleSplitBill}
+          key={showBillProfile.id}
+        />}{/*Short circuit No to show the bill*/}
     </>
   );
 }
